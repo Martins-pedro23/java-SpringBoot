@@ -34,9 +34,15 @@ public class ProductService {
         if(action.equals("save")){
                 return new ResponseEntity<ProductModel>(productRepository.save(productModel), HttpStatus.CREATED);
         }
-        
+
         return new ResponseEntity<ProductModel>(productRepository.save(productModel), HttpStatus.OK);
             
+    }
+
+    public ResponseEntity<ResponseModel> delete(long code){
+        productRepository.deleteById(code);
+        responseModel.setMessage("Product deleted!");
+        return new ResponseEntity<ResponseModel>(responseModel, HttpStatus.OK);
     }
 
 }
